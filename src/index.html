@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>FFCS On The Go New</title>
+        <title>FFCS Saviour New</title>
         <link rel="manifest" href="./manifest.webmanifest" />
         <link
             rel="icon"
@@ -46,7 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <meta name="distribution" content="Global" />
         <meta name="country" content="India" />
         <meta name="theme-color" content="#9C27B0" />
-        <meta property="og:title" content="FFCS On The Go New" />
+        <meta property="og:title" content="FFCS Saviour" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ffcs.sarveshdakhore.in/" />
         <meta property="og:image" content="./images/og_image.png" />
@@ -54,10 +54,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             property="og:description"
             content="Visualize and make the most optimum timetable for yourself."
         />
-        <meta property="og:site_name" content="FFCS On The Go" />
+        <meta property="og:site_name" content="FFCS Saviour" />
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script>
+        window.onload = function() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init({
+                    client_id: '172845938715-euegmmjq0krfd38jld00kbl1tmshomq7.apps.googleusercontent.com'
+                }).then(function() {
+                    // The Google Sign-In client has been initialized.
+                    // Now you can attach the sign-in event listener.
+                    document.getElementById('customBtn').addEventListener('click', function signIn() {
+                        var auth2 = gapi.auth2.getAuthInstance();
+                        auth2.signIn().then(function(googleUser) {
+                            console.log(googleUser);  // Log the entire googleUser object
+                        });
+                    });
+                }).catch(function(error) {
+                    console.log('Error initializing Google Sign-In:', error);
+                });
+            });
+        };
+        </script>
     </head>
 
     <body>
+        
+        
         <!-- Service worker to check for an update -->
         <script>
             // Check if service workers are supported
@@ -86,7 +109,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                             ).show();
                         } else {
                             var result = window.confirm(
-                                'A new version of FFCS On The Go is available! Would you like to reload the page?',
+                                'A new version of FFCS Saviour is available! Would you like to reload the page?',
                             );
                             if (result) {
                                 window.location.reload();
@@ -125,7 +148,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <!-- Navbar -->
         <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
             <div class="container-xl px-3 py-1">
-                <a class="navbar-brand" href="/">FFCS On The Go</a>
+                <a class="navbar-brand" href="/">FFCS Saviour</a>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -234,10 +257,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 </li>
                             </ul>
                         </div>
-
+                        <div id="my-signin2"></div>
                         <a
                             rel="noopener"
-                            href="https://github.com/sarveshdakhore/FFCSonTheGo"
+                            href="https://github.com/Akarsh-Dixit/FFCS"
                             target="_blank"
                         >
                             <button
@@ -249,22 +272,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 <i class="fab fa-github"></i>&nbsp;&nbsp;GitHub
                             </button>
                         </a>
-                        <a
-                            href="https://ffcsonthego.vatz88.in/"
-                            target="_blank"
-                            rel="noopener"
-                        >
-                            <button
-                                class="btn btn-outline-secondary nav-btn-outline ms-2"
-                                type="button"
-                                data-bs-toggle="modal"
-                                data-bs-target="#about-modal"
-                                id="switchButton"
-                            >
-                                <i class="fa fa-calendar"></i>&nbsp;&nbsp;OG TT
-                            </button>
-                        </a>
-
+                        <button class="btn btn-outline-secondary nav-btn-outline ms-2" type="button" data-bs-toggle="modal" data-bs-target="#about-modal" id="customBtn">Sign-In</button>
                         <a
                             rel="noopener"
                             href="https://sarveshdakhore.github.io/HowToUseFFCSOnTheGo/"
@@ -1251,7 +1259,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                     <div class="modal-body">
                         <p>
-                            A new version of FFCS On The Go is available! Would
+                            A new version of FFCS Saviour is available! Would
                             you like to reload the page?
                         </p>
                     </div>
@@ -1545,7 +1553,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.10.2/Sortable.min.js"></script>
         <script src="./js/add_on.js"></script>
-
+        <script>
+            document.getElementById('customBtn').addEventListener('click', signIn);
+        
+            function signIn() {
+              var auth2 = gapi.auth2.getAuthInstance();
+              auth2.signIn().then(function(googleUser) {
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
+              });
+            }
+          </script>
         <script>
             var disqus_config = function () {
                 this.page.url = 'https://ffcsonthego.sarveshdakhore.in/'; // Replace PAGE_URL with your page's canonical URL variable
