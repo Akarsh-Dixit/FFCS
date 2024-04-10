@@ -1,12 +1,12 @@
 {
-    "name": "FFCSonTheGo",
+    "name": "ffcssaviour",
     "version": "2.0.0",
     "lastUpdate": {
         "vellore": "All Semester",
         "chennai": "All Semester"
     },
     "repository": "https://github.com/sarveshdakhore/FFCSonTheGo.git",
-    "author": "Vatsal Joshi <vatz88@gmail.com>,Sarvesh Dakhore <dmtosarvesh@gmail.com>",
+    "author": "Sarvesh Dakhore <dmtosarvesh@gmail.com>",
     "license": "GPL-3.0",
     "private": true,
     "scripts": {
@@ -19,7 +19,7 @@
         "prepare": "husky install"
     },
     "engines": {
-        "node": "18.20.1"
+        "node": "20"
     },
     "browserslist": "> 0.5%, last 2 versions, not dead",
     "dependencies": {
